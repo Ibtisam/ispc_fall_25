@@ -1138,6 +1138,192 @@
           padding-bottom: 1.2rem;
         }
       }
+      /* SOP & Document Links */
+      .footer-documents {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .sop-link,
+      .doc-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .sop-link {
+        background: rgba(52, 152, 219, 0.2);
+        border-color: rgba(52, 152, 219, 0.3);
+      }
+
+      .sop-link:hover {
+        background: rgba(52, 152, 219, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+      }
+
+      .doc-link:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+      }
+
+      .sop-link i,
+      .doc-link i {
+        font-size: 1.1rem;
+      }
+
+      /* SOP Banner for Judges */
+      .sop-banner {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin: 2rem auto 3rem;
+        max-width: 900px;
+        box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sop-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2ecc71, #3498db);
+      }
+
+      .sop-banner-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .sop-banner-text {
+        flex-grow: 1;
+      }
+
+      .sop-banner-text h3 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .sop-banner-text h3 i {
+        color: #2ecc71;
+      }
+
+      .sop-banner-text p {
+        opacity: 0.9;
+        font-size: 0.95rem;
+        margin-bottom: 0;
+      }
+
+      .sop-banner-button {
+        background: white;
+        color: #3498db;
+        padding: 12px 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sop-banner-button:hover {
+        background: #f8f9fa;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Panel Card SOP Link */
+      .panel-sop-link {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #eee;
+      }
+
+      .panel-sop-link a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 8px 15px;
+        background: rgba(52, 152, 219, 0.1);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .panel-sop-link a:hover {
+        background: rgba(52, 152, 219, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* Responsive adjustments for SOP section */
+      @media (max-width: 768px) {
+        .sop-banner-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .sop-banner-button {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .footer-documents {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .sop-link,
+        .doc-link {
+          width: 100%;
+          max-width: 300px;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .sop-banner {
+          padding: 1.2rem;
+        }
+
+        .sop-banner-text h3 {
+          font-size: 1.2rem;
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1236,7 +1422,22 @@
           </button>
         </div>
       </section>
-
+      <!-- SOP Banner for Judges -->
+      <section class="sop-banner">
+        <div class="sop-banner-content">
+          <div class="sop-banner-text">
+            <h3><i class="fas fa-gavel"></i> Important for Panel Judges</h3>
+            <p>
+              Please review the Standard Operating Procedures (SOPs) for
+              evaluation criteria, scoring rubrics, and competition guidelines.
+            </p>
+          </div>
+          <a href="ISPC_SOPs.pdf" target="_blank" class="sop-banner-button">
+            <i class="fas fa-download"></i>
+            <span>Download Judges SOP</span>
+          </a>
+        </div>
+      </section>
       <section class="panels-grid" id="panelsContainer">
         <!-- Panels will be dynamically inserted here -->
       </section>
