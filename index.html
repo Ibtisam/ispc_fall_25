@@ -235,7 +235,7 @@
         font-size: 1rem;
       }
 
-      .judge-expertise {
+      .judge-availability {
         font-size: 0.85rem;
         color: #666;
         margin-bottom: 6px;
@@ -1342,13 +1342,13 @@
               <i class="fas fa-calendar-day"></i> 18 December
             </div>
             <div class="info-card">
-              <i class="fas fa-clock"></i> 09:00–12:00
+              <i class="fas fa-clock"></i> 09:00–16:00
             </div>
             <div class="info-card">
               <i class="fas fa-user-friends"></i> 8 Panels
             </div>
             <div class="info-card">
-              <i class="fas fa-user-tie"></i> 30 Judges
+              <i class="fas fa-user-tie"></i> 34 Judges
             </div>
           </div>
         </div>
@@ -1493,7 +1493,7 @@
       const competitionData = {
         competition_details: {
           day: "18 December, Thursday",
-          time_slot: "09:00–12:00",
+          time_slot: "09:00–16:00",
           total_panels: 8,
           judges_per_panel: "3-4",
           venue: "CUI Dhamtor Campus",
@@ -1503,91 +1503,97 @@
             panel_id: "P_AI_ML",
             panel_name: "Artificial Intelligence & Machine Learning",
             domain: "AI/ML",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Dr. Nuhman Ul Haq",
-                expertise: "Artificial Intelligence, Advanced Algorithms",
+                availability: "Availability: 09:00-16:00",
                 email: "Nuhman@cuiatd.edu.pk",
               },
               {
                 name: "Dr. Ahmad Saeed Khattak",
-                expertise: "Artificial Intelligence, Theory of Automata",
+                availability: "Availability: 10:30-16:00",
                 email: "ahmadsaeed@cuiatd.edu.pk",
               },
               {
                 name: "Aisha",
-                expertise: "Artificial Intelligence",
+                availability: "Availability: 09:00-15:00",
                 email: "aishakhan@cuiatd.edu.pk",
               },
               {
                 name: "Zeenat Zulfiqar",
-                expertise: "Artificial Intelligence",
+                availability: "Availability: 09:00-13:30",
                 email: "zeenatzulfiqar@cuiatd.edu.pk",
               },
             ],
           },
           {
             panel_id: "P_SWE",
-            panel_name: "Software Engineering & Development",
+            panel_name: "Software Engineering & App Development",
             domain: "Software Engineering",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Hifza Ali",
-                expertise: "Software Construction and Development",
+                availability: "Availability: 09:00-10:30, 12:00-16:00",
                 email: "hyfza@cuiatd.edu.pk",
               },
               {
-                name: "Syed Shahab Zarin",
-                expertise: "Human Computer Interaction",
-                email: "syedshahab@cuiatd.edu.pk",
+                name: "Mukhtiar Zamin",
+                availability: "Availability: 09:00-10:30, 12:00-15:00",
+                email: "mukhtiar@cuiatd.edu.pk",
+              },
+              {
+                name: "Bushra Mushtaq",
+                availability: "Availability: 10:30-12:00, 13:30-16:00",
+                email: "bushramushtaq@cuiatd.edu.pk",
               },
               {
                 name: "Sadaf Riaz",
-                expertise: "Web Technologies, Software Requirement Engineering",
+                availability: "Availability: 09:00-12:00",
                 email: "sadafriaz@cuiatd.edu.pk",
               },
               {
                 name: "Fizza Semab Nazli",
-                expertise: "Software Project Management, AI",
+                availability: "Availability: 09:00-12:00",
                 email: "fizzasemab@cuiatd.edu.pk",
               },
             ],
           },
           {
             panel_id: "P_PROG",
-            panel_name: "Programming Fundamentals & OOP",
+            panel_name:
+              "Programming Fundamentals & Object Oriented Programming",
             domain: "Programming",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Dr. Abdul Nasir Khan",
-                expertise: "Programming Fundamentals, OOP",
+                availability: "Availability: 09:00-10:30, 13:30-16:00",
                 email: "anasir@cuiatd.edu.pk",
               },
               {
                 name: "Dr. Mazhar Ali",
-                expertise: "Programming Fundamentals",
+                availability: "Availability: 09:00-13:30",
                 email: "mazhar@cuiatd.edu.pk",
               },
               {
                 name: "Sumair Khan",
-                expertise: "Object Oriented Programming",
+                availability: "Availability: 09:00-16:00",
                 email: "sumair@cuiatd.edu.pk",
               },
               {
-                name: "Fuzel Jamil",
-                expertise: "Programming Fundamentals",
-                email: "fuzeljamil@cuiatd.edu.pk",
+                name: "Sana Malik",
+                availability: "Availability: 09:00-16:00",
+                email: "sanam@cuiatd.edu.pk",
               },
               {
-                name: "Sana Malik",
-                expertise: "Object Oriented Programming",
-                email: "sanam@cuiatd.edu.pk",
+                name: "Fuzel Jamil",
+                availability: "Availability: 09:00-10:30, 13:30-16:00",
+                email: "fuzeljamil@cuiatd.edu.pk",
               },
             ],
           },
@@ -1595,27 +1601,27 @@
             panel_id: "P_GA_MO",
             panel_name: "Game Development & Mobile Application",
             domain: "Game/Mobile Development",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Dr. Muhammad Ibtisam Gul",
-                expertise: "Mobile App Development, Game Development",
+                availability: "Availability: 09:00-16:00",
                 email: "ahsan@cuiatd.edu.pk)",
               },
               {
                 name: "Ahsan Khan",
-                expertise: "Game Development",
+                availability: "Availability: 09:00-10:30, 12:00-13:30",
                 email: "ibtisamgull@cuiatd.edu.pk",
               },
               {
-                name: "Ghanwa Batool",
-                expertise: "Game Development",
-                email: "ghanwa@cuiatd.edu.pk",
+                name: "Jawad Khan",
+                availability: "Availability: 10:30-12:00, 13:00-16:00",
+                email: "jawadkhan@cuiatd.net.pk",
               },
               {
                 name: "Yasar Khan",
-                expertise: "Mobile Application Development, OOP",
+                availability: "Availability: 09:00-12:00",
                 email: "yasarkhan@cuiatd.edu.pk",
               },
             ],
@@ -1624,27 +1630,27 @@
             panel_id: "P_DS_ALGO",
             panel_name: "Data Structures & Algorithms",
             domain: "DS/Algorithms",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Dr. Imran Ali Khan",
-                expertise: "Data Structures",
+                availability: "Availability: 09:00-10:30, 12:00-13:30",
                 email: "imran@cuiatd.edu.pk",
               },
               {
                 name: "Dr. Waqas Jadoon",
-                expertise: "OOP, Machine Learning",
+                availability: "Availability: 09:00-12:00, 13:30-16:00",
                 email: "waqas_jadoon@cuiatd.edu.pk",
               },
               {
-                name: "Muhammad Ali Khan",
-                expertise: "Data Structures, Web Technologies",
-                email: "malikhan@cuiatd.edu.pk",
+                name: "Ehzaz Mustafa",
+                availability: "Availability: 10:30-13:30",
+                email: "nknaumankhan510@cuiatd.edu.pk",
               },
               {
                 name: "Nauman Khan",
-                expertise: "Data Structures, OOP",
+                availability: "Availability: 09:00-16:00",
                 email: "nknaumankhan510@cuiatd.edu.pk",
               },
             ],
@@ -1653,78 +1659,93 @@
             panel_id: "P_SEC_NET",
             panel_name: "Security & Networks",
             domain: "Security/Networking",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Dr. Rab Nawaz",
-                expertise: "Operating Systems",
+                availability: "Availability: 09:00-12:00",
                 email: "rabnawaz@cuiatd.edu.pk",
               },
               {
                 name: "Dr. Javid Ali",
-                expertise: "Computer Networks, Advanced Computer Architecture",
+                availability: "Availability: 09:00-16:00",
                 email: "javidali@cuiatd.edu.pk",
               },
               {
                 name: "Muhammad Ahmed Mustafa",
-                expertise: "Information Security",
+                availability: "Availability: 09:00-16:00",
                 email: "ahmedmustafa@cuiatd.edu.pk",
+              },
+              {
+                name: "Muhammad Ali Faisal",
+                availability: "Availability: 09:00-10:30, 12:00-13:30",
+                email: "mfaisal@cuiatd.edu.pk",
               },
             ],
           },
           {
             panel_id: "P_SYS_DB",
-            panel_name: "Systems & Databases",
+            panel_name: "Web Development & Databases",
             domain: "Systems/Databases",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
+                name: "Dr. Osman Khalid",
+                availability: "Availability: 12:00-16:00",
+                email: "osman@cuiatd.edu.pk",
+              },
+              {
                 name: "Dr. Farman Ullah",
-                expertise: "Advanced Programming",
+                availability: "Availability: 09:00-16:00",
                 email: "farmanmehsud@cuiatd.edu.pk",
               },
               {
-                name: "Muhammad Ali Faisal",
-                expertise: "Computer Organization, Computer Networks",
-                email: "mfaisal@cuiatd.edu.pk",
+                name: "Muhammad Ali Khan",
+                availability: "Availability: 10:30-16:00",
+                email: "malikhan@cuiatd.edu.pk",
               },
               {
                 name: "Nighat Usman",
-                expertise: "Database Systems, Information Security",
+                availability: "Availability: 09:00-13:30",
                 email: "nighat@cuiatd.edu.pk",
               },
             ],
           },
           {
             panel_id: "P_AUTO_HCI",
-            panel_name: "Automata Theory & HCI",
+            panel_name: "Automata Theory & Others",
             domain: "Automata/HCI",
-            time_slot: "09:00–12:00",
+            time_slot: "09:00–16:00",
             venue: "Will be decided later....",
             judges: [
               {
                 name: "Dr. Ahmad Khan",
-                expertise: "Theory of Automata, Artificial Intelligence",
+                availability: "Availability: 09:00-13:30",
                 email: "ahmadkhan@cuiatd.edu.pk",
               },
               {
-                name: "Aatikah Rasool",
-                expertise: "Theory of Automata, Artificial Intelligence",
-                email: "Aatikah@cuiatd.edu.pk",
+                name: "Faryal Jhangir",
+                availability: "Availability: 12:00-16:00",
+                email: "faryaljahangir@cuiatd.edu.pk",
               },
               {
-                name: "Sonia Ghazal",
-                expertise: "Compiler Construction, Operating Systems",
-                email: "soniaghazal@cuiatd.edu.pk",
+                name: "Syed Shahab Zarin",
+                availability: "Availability: 10:30-13:30",
+                email: "syedshahab@cuiatd.edu.pk",
+              },
+              {
+                name: "Aatikah Rasool",
+                availability: "Availability: 09:00-16:00",
+                email: "aatikah@cuiatd.edu.pk",
               },
             ],
           },
         ],
         summary: {
-          total_judges_assigned: 30,
-          average_judges_per_panel: 3.75,
+          total_judges_assigned: 34,
+          average_judges_per_panel: 4.25,
           domain_coverage: [
             "AI/ML",
             "Software Engineering",
@@ -1823,7 +1844,9 @@
                     <div class="judge-avatar">${getInitials(judge.name)}</div>
                     <div class="judge-info">
                         <div class="judge-name">${judge.name}</div>
-                        <div class="judge-expertise">${judge.expertise}</div>
+                        <div class="judge-availability">${
+                          judge.availability
+                        }</div>
                         <div class="judge-email">
                             <a href="mailto:${judge.email}">${judge.email}</a>
                         </div>
