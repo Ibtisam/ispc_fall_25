@@ -260,18 +260,57 @@
         flex-grow: 1;
       }
 
-      .winner-name {
+      .winner-team-name {
         font-weight: 600;
         color: var(--dark-color);
-        margin-bottom: 4px;
+        margin-bottom: 6px;
         font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .winner-team-name i {
+        color: var(--secondary-color);
+        font-size: 0.9rem;
       }
 
       .winner-project {
         font-size: 0.9rem;
         color: #666;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
         line-height: 1.4;
+        font-weight: 500;
+      }
+
+      .student-names {
+        font-size: 0.85rem;
+        color: #555;
+        margin-bottom: 6px;
+        padding-left: 10px;
+        border-left: 3px solid #3498db;
+        background: rgba(52, 152, 219, 0.05);
+        padding: 8px;
+        border-radius: 4px;
+      }
+
+      .student-names strong {
+        color: #2c3e50;
+        margin-right: 5px;
+      }
+
+      .mentor-info {
+        font-size: 0.85rem;
+        color: #27ae60;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .mentor-info i {
+        color: #27ae60;
+        font-size: 0.8rem;
       }
 
       .winner-score {
@@ -281,6 +320,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
+        margin-top: 5px;
       }
 
       .winner-score i {
@@ -846,16 +886,16 @@
               <i class="fas fa-calendar-day"></i> Results Announced
             </div>
             <div class="info-card">
-              <i class="fas fa-medal"></i> 24 Winning Projects
+              <i class="fas fa-medal"></i> 38 Winning Projects
             </div>
             <div class="info-card">
               <i class="fas fa-user-friends"></i> 8 Competition Panels
             </div>
             <div class="info-card">
-              <i class="fas fa-award"></i> 8 Gold Medalists
+              <i class="fas fa-award"></i> 14 Gold
             </div>
             <div class="info-card">
-              <i class="fas fa-star"></i> 8 Silver Medalists
+              <i class="fas fa-user-graduate"></i> 81 Winning Students
             </div>
           </div>
         </div>
@@ -868,19 +908,19 @@
           <button class="filter-btn all active" data-filter="all">
             All Results
           </button>
-          <button class="filter-btn ai" data-filter="ai">AI/ML</button>
-          <button class="filter-btn swe" data-filter="swe">Software Eng</button>
+          <button class="filter-btn ai" data-filter="ai">Arti Int</button>
+          <button class="filter-btn swe" data-filter="swe">Web Dev</button>
           <button class="filter-btn prog" data-filter="prog">
-            Programming
+            Prog/OOP
           </button>
           <button class="filter-btn oop" data-filter="oop">Game/Mobile</button>
           <button class="filter-btn ds" data-filter="ds">
-            Data Structures
+            Data Str/Algo
           </button>
-          <button class="filter-btn sys" data-filter="sec">Networks</button>
-          <button class="filter-btn sec" data-filter="sys">Database</button>
+          <button class="filter-btn sys" data-filter="sec">Networks/OS</button>
+          <button class="filter-btn sec" data-filter="sys">Database/Adv Prog</button>
           <button class="filter-btn auto" data-filter="auto">
-            Automata/HCI
+            Compiler
           </button>
         </div>
       </section>
@@ -935,141 +975,265 @@
     </footer>
 
     <script>
-      // Competition results data
+      // Competition results data with student names and mentors
       const competitionResults = {
         competition_details: {
           day: "18 December, Thursday",
           results_announced: "19 December 2025",
           total_panels: 8,
-          total_winners: 24,
-          gold_medals: 8,
-          silver_medals: 8,
-          bronze_medals: 8,
+          total_winners: 81,
+          gold_medals: 14,
+          silver_medals: 12,
+          bronze_medals: 12,
+          total_students: 185,
         },
         panels: [
           {
             panel_id: "P_AI_ML",
-            panel_name: "Artificial Intelligence & Machine Learning",
+            panel_name: "Artificial Intelligence(4th Semester)",
             domain: "AI/ML",
-            total_projects: 15,
+            total_projects: 5,
             judges: "Dr. Nuhman Ul Haq, Dr. Ahmad Saeed Khattak, Aisha, Zeenat Zulfiqar",
             winners: [
               {
                 rank: 1,
-                name: "Team NeuralNexus",
-                project: "Real-time Traffic Prediction using Deep Learning",
-                score: 94.5,
+                project: "Movie Recommendation Engine",
+                students: ["Amir Ali Shah", "Hasnat Ashraf"],
+                mentor: "Aatikah Rasool",
+                score: (36/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "AI Visionaries",
-                project: "Medical Image Analysis for Early Disease Detection",
-                score: 92.0,
+                project: "AI powered Multimodal for Deaf and Mute People",
+                students: ["Syed Azzaz Haider Rizvi"],
+                mentor: "Aatikah Rasool",
+                score: (35/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "Data Wizards",
-                project: "Sentiment Analysis of Social Media Trends",
-                score: 89.5,
+                project: "Credit Card Fraud Detection",
+                students: ["Haider Tahir"],
+                mentor: "Aatikah Rasool",
+                score: (34/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team QuantumAI for innovative approach to anomaly detection"
+          },
+           {
+            panel_id: "P_AI_ML",
+            panel_name: "Artificial Intelligence(6th Semester)",
+            domain: "AI/ML",
+            total_projects: 5,
+            judges: "Dr. Nuhman Ul Haq, Dr. Ahmad Saeed Khattak, Aisha, Zeenat Zulfiqar",
+            winners: [
+              {
+                rank: 1,
+                project: "Malware Detection",
+                students: ["Daoud", "Haider Iqbal"],
+                mentor: "Zeenat Zulfiqar",
+                score: (40/50)*100,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                project: "Emotion Detection",
+                students: ["Gul-e-Narjis", "Alishba Rashid", "Khadijah Zamir"],
+                mentor: "Aisha",
+                score: (38/50)*100,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                project: "Price Prediction",
+                students: ["Jawad Khan", "Mohamin Mukhtiyar", "Ammar Khalid"],
+                mentor: "Aisha",
+                score: (37/50)*100,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
           },
           {
             panel_id: "P_SWE",
-            panel_name: "Software Engineering & Web Development",
+            panel_name: "Web Development",
             domain: "Software Engineering",
-            total_projects: 18,
+            total_projects: 13,
             judges: "Hifza Ali, Mukhtiar Zamin, Bushra Mushtaq, Sadaf Riaz, Fizza Semab Nazli",
             winners: [
               {
                 rank: 1,
-                name: "CodeCrafters",
-                project: "Agile Project Management Platform",
-                score: 95.0,
+                project: "Food Delivery App",
+                students: ["Muhammad Abdullah", "Muhammad Talha", "Muhammad Salman", "Hamid Abdullah"],
+                mentor: "Sadaf Riaz",
+                score: (44/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "DevSquad",
-                project: "E-commerce Platform with AI Recommendations",
-                score: 92.5,
+                project: "Abbot Home Tution",
+                students: ["Amir ALi Shah"],
+                mentor: "Bushra Mushtaq",
+                score: (43/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "WebInnovators",
-                project: "Real-time Collaboration Tool for Developers",
-                score: 90.0,
+                project: "DW Studio Photo Editor",
+                students: ["Dil Jan Khan", "Wasat Ullah"],
+                mentor: "Qasim Hayat",
+                score: (42/50)*100,
+                prize: "Bronze Medal + Certificate"
+              },
+              {
+                rank: 3,
+                project: "Recfatio - Resume to Portfolio Converter",
+                students: ["Shahwaiz Arif", "Usman Zubair"],
+                mentor: "Sadaf Riaz",
+                score: (42/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team SecureCode for exceptional security implementation"
           },
           {
             panel_id: "P_PROG",
-            panel_name: "Programming Fundamentals & Object Oriented Programming",
+            panel_name: "Programming Fundamentals",
             domain: "Programming",
-            total_projects: 20,
+            total_projects: 2,
             judges: "Dr. Abdul Nasir Khan, Dr. Mazhar Ali, Sumair Khan, Sana Malik, Fuzel Jamil",
             winners: [
               {
                 rank: 1,
-                name: "Algorithm Masters",
-                project: "Advanced Sorting Algorithm Visualizer",
-                score: 93.5,
+                project: "Bakery Inventory & Billing System",
+                students: ["Harram Rehmat", "Syeda Adan Bibi"],
+                mentor: "Dr. Abdul Nasir Khan",
+                score: (37/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "OOP Experts",
-                project: "Hospital Management System with Design Patterns",
-                score: 91.0,
+                project: "Mario Game",
+                students: ["Shaheer Zeb Khan"],
+                mentor: "Dr. Abdul Nasir Khan",
+                score: (35/50)*100,
+                prize: "Silver Medal + Certificate"
+              }
+            ],
+          },
+          {
+            panel_id: "P_PROG",
+            panel_name: "Object Oriented Programming",
+            domain: "Programming",
+            total_projects: 14,
+            judges: "Dr. Abdul Nasir Khan, Dr. Mazhar Ali, Sumair Khan, Sana Malik, Fuzel Jamil",
+            winners: [
+              {
+                rank: 1,
+                project: "Cricket Match Scorer",
+                students: ["Zohaib Hanif Khokar", "Mir Mustafa", "Ali Eshan"],
+                mentor: "Sumair Khan",
+                score: (44/50)*100,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                project: "Bomber Man",
+                students: ["Saifullah"],
+                mentor: "Dr. Fiaz Gul",
+                score: (42/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "CodeArtisans",
-                project: "Interactive Programming Learning Platform",
-                score: 88.5,
+                project: "University Portal",
+                students: ["Ahmad Ali"],
+                mentor: "Dr. Fiaz Gul",
+                score: (41/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team CleanCode for excellent code documentation"
           },
           {
             panel_id: "P_GA_MO",
-            panel_name: "Game Development & Mobile Application",
+            panel_name: "Game Development",
             domain: "Game/Mobile Development",
-            total_projects: 16,
+            total_projects: 5,
             judges: "Dr. Muhammad Ibtisam Gul, Ahsan Khan, Jawad Khan, Yasar Khan",
             winners: [
               {
                 rank: 1,
-                name: "GameChangers",
-                project: "AR-based Educational Game for Children",
-                score: 96.0,
+                project: "Squid Game",
+                students: ["Sayyam Tahir", "Nouman Khan", "Kazim Shoukat"],
+                mentor: "Mazhar Bukhari",
+                score: (44/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "Mobile Mavericks",
-                project: "Fitness Tracking App with Social Features",
-                score: 93.5,
+                project: "Eclipse of Dominion",
+                students: ["Maaz Khan", "Sudais Murad"],
+                mentor: "Mazhar Bukhari",
+                score: (42/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "App Architects",
-                project: "Language Learning Mobile Application",
-                score: 90.5,
+                project: "Campus of the Dead: Semester 0",
+                students: ["Fatima Khan", "Alaina Khan", "Maryam Khan"],
+                mentor: "Mazhar Bukhari",
+                score: (41/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team PixelPerfect for outstanding UI/UX design"
+          },
+          {
+            panel_id: "P_GA_MO",
+            panel_name: "Mobile Application",
+            domain: "Game/Mobile Development",
+            total_projects: 15,
+            judges: "Dr. Muhammad Ibtisam Gul, Ahsan Khan, Jawad Khan, Yasar Khan",
+            winners: [
+              {
+                rank: 1,
+                project: "Campus Finder",
+                students: ["Alishba Zeeshan", "Iswah Shujat"],
+                mentor: "Jawad Khan",
+                score: (46/50)*100,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 1,
+                project: "Mindwell",
+                students: ["Sayyam Tahir", "Nouman Khan", "Kazim Shoukat"],
+                mentor: "Dr. M. Ibtisam Gul",
+                score: (46/50)*100,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                project: "Dental Hub",
+                students: ["Syed Mudassar Hussain Shah", "Aneeza Farooq"],
+                mentor: "Jawad Khan",
+                score: (44/50)*100,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                project: "Remainder App",
+                students: ["Imama Zulfiqar", "Hamza"],
+                mentor: "Jawad Khan",
+                score: (43/50)*100,
+                prize: "Bronze Medal + Certificate"
+              },
+              {
+                rank: 3,
+                project: "COMServe",
+                students: ["Fatima Saher", "Aslaab Ayyaz", "Maryam Iqbal"],
+                mentor: "Yasar Khan",
+                score: (43/50)*100,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
           },
           {
             panel_id: "P_DS_ALGO",
@@ -1080,127 +1244,178 @@
             winners: [
               {
                 rank: 1,
-                name: "Data Structure Pros",
-                project: "Optimized Graph Traversal Algorithms",
-                score: 94.0,
+                project: "CPU Schedular",
+                students: ["Abdul Jabbar"],
+                mentor: "Dr. Imran Ali Khan",
+                score: (48/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "Algorithm Innovators",
-                project: "Dynamic Programming Solution Optimizer",
-                score: 91.5,
+                project: "Word Suggester & Spell Checker",
+                students: ["Hasnat Ashraf"],
+                mentor: "Dr. Imran Ali Khan",
+                score: (46/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "Efficiency Experts",
-                project: "Memory-Efficient Data Structure Library",
-                score: 89.0,
+                project: "Data Structure Visualizer",
+                students: ["Amir Ali Shah", "Haider Tahir"],
+                mentor: "Dr. Imran Ali Khan",
+                score: (42/50)*100,
+                prize: "Bronze Medal + Certificate"
+              },
+              {
+                rank: 3,
+                project: "Skyscrapper Stack Builder Game",
+                students: ["Uman Zehra", "Zuneera Tariq"],
+                mentor: "Tariq Baloch",
+                score: (42/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team TimeComplexity for best algorithm efficiency"
           },
           {
             panel_id: "P_SEC_NET",
-            panel_name: "Security & Networks",
+            panel_name: "Computer Networks",
             domain: "Security/Networking",
-            total_projects: 14,
+            total_projects: 1,
             judges: "Dr. Rab Nawaz, Dr. Javid Ali, Muhammad Ahmed Mustafa, Muhammad Ali Faisal",
             winners: [
               {
                 rank: 1,
-                name: "CyberGuardians",
-                project: "Network Intrusion Detection System",
-                score: 95.5,
+                project: "Vellum: Intelligent Secure Communication Ecosystem",
+                students: ["Afnan Hassan", "Muhammad Afzal Khan", "Muhammad Noor-ul-Eman"],
+                mentor: "Dr. Javid Ali",
+                score: (42/50)*100,
+                prize: "Gold Medal + Certificate"
+              }
+            ],
+          },
+          {
+            panel_id: "P_SEC_NET",
+            panel_name: "Operating Systems",
+            domain: "Security/Networking",
+            total_projects: 6,
+            judges: "Dr. Rab Nawaz, Dr. Javid Ali, Muhammad Ahmed Mustafa, Muhammad Ali Faisal",
+            winners: [
+              {
+                rank: 1,
+                project: "COMSATS OS",
+                students: ["Abdul Jabbar", "Azzaz Haider"],
+                mentor: "Riasat Khan",
+                score: (44/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "SecureNet",
-                project: "Encrypted Messaging Protocol",
-                score: 92.5,
+                project: "VaultX Smart Ecosystem",
+                students: ["Noor-us-Saba", "Kashaf Batool"],
+                mentor: "Ehzaz Mustafa",
+                score: (40/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "PacketMasters",
-                project: "Network Traffic Analyzer",
-                score: 90.0,
+                project: "Banker's Algorithm",
+                students: ["Khadija Haroon", "Tooba Sajjid"],
+                mentor: "Muniba Firdous",
+                score: (37/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team Firewall for innovative security approach"
           },
           {
             panel_id: "P_SYS_DB",
-            panel_name: "App Development & Databases",
+            panel_name: "Databases",
             domain: "Systems/Databases",
-            total_projects: 19,
+            total_projects: 2,
             judges: "Dr. Osman Khalid, Dr. Farman Ullah, Muhammad Ali Khan, Nighat Usman",
             winners: [
               {
                 rank: 1,
-                name: "Database Gurus",
-                project: "Distributed Database Management System",
-                score: 94.5,
+                project: "E-Banking",
+                students: ["Taimoor Amin", "Abrar", "Kashaf Batool", "Noor-us-Saba"],
+                mentor: "Mehwish Sabir",
+                score: (47/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "System Architects",
-                project: "Cloud-Based Inventory Management System",
-                score: 92.0,
+                project: "Cricket Scoreboard",
+                students: ["Zohaib Hanif", "Mir Mustafa", "Ajwa Saleem", "Saleyha Mustafa"],
+                mentor: "Mehwish Sabir",
+                score: (33/50)*100,
                 prize: "Silver Medal + Certificate"
-              },
-              {
-                rank: 3,
-                name: "Data Engineers",
-                project: "Real-time Data Processing Pipeline",
-                score: 89.5,
-                prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team QueryOptimizer for best database performance"
+          },
+          {
+            panel_id: "P_SYS_DB",
+            panel_name: "Advanced Programming",
+            domain: "Systems/Databases",
+            total_projects: 5,
+            judges: "Dr. Osman Khalid, Dr. Farman Ullah, Muhammad Ali Khan, Nighat Usman",
+            winners: [
+              {
+                rank: 1,
+                project: "Crime Data Analysis & Visualization Tool",
+                students: ["Arslan Ahmad Khan", "Asim Nawaz"],
+                mentor: "Dr. Farman Ullah",
+                score: (46/50)*100,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                project: "Cyber Shield",
+                students: ["Fauzan Gohar"],
+                mentor: "Dr. Farman Ullah",
+                score: (37/50)*100,
+                prize: "Silver Medal + Certificate"
+              }
+            ],
           },
           {
             panel_id: "P_AUTO_HCI",
-            panel_name: "Automata Theory & Others",
+            panel_name: "Compiler Construction",
             domain: "Automata/HCI",
-            total_projects: 15,
+            total_projects: 6,
             judges: "Dr. Ahmad Khan, Faryal Jhangir, Syed Shahab Zarin, Aatikah Rasool",
             winners: [
               {
                 rank: 1,
-                name: "Automata Experts",
-                project: "Finite Automata Simulator",
-                score: 93.0,
+                project: "Simple Network Command Language",
+                students: ["Alishba Ali"],
+                mentor: "Faryal Jhangir",
+                score: (50/50)*100,
                 prize: "Gold Medal + Certificate"
               },
               {
                 rank: 2,
-                name: "HCI Innovators",
-                project: "Accessibility-Focused Interface Design",
-                score: 90.5,
+                project: "Pseudocode to Python",
+                students: ["Malaika Bibi", "Noor-ul-Huda Gohar"],
+                mentor: "Faryal Jhangir",
+                score: (48/50)*100,
                 prize: "Silver Medal + Certificate"
               },
               {
                 rank: 3,
-                name: "Theory Practitioners",
-                project: "Regular Expression Parser and Optimizer",
-                score: 88.0,
+                project: "Music DSL Compiler",
+                students: ["Muhammad Asim Saleem", "Sarif-Bin-Asif", "Zohaib Khan"],
+                mentor: "Faryal Jhangir",
+                score: (46/50)*100,
                 prize: "Bronze Medal + Certificate"
               }
             ],
-            special_mention: "Team UserCentric for exceptional usability testing"
           }
         ],
         summary: {
-          total_participating_teams: 134,
-          total_projects_evaluated: 134,
-          winning_teams: 24,
-          participation_rate: "82%",
+          total_participating_teams: 185,
+          total_projects_evaluated: 87,
+          winning_teams: 38,
+          winning_students: 81,
+          participation_rate: "45%",
           average_score: 88.7,
         }
       };
@@ -1278,8 +1493,17 @@
                         <div class="winner-item ${getRankClass(winner.rank)}">
                             <div class="winner-rank">${winner.rank}</div>
                             <div class="winner-info">
-                                <div class="winner-name">${winner.name}</div>
-                                <div class="winner-project">${winner.project}</div>
+                                <div class="winner-project">
+                                    <i class="fas fa-project-diagram"></i>
+                                    <span>${winner.project}</span>
+                                </div>
+                                <div class="student-names">
+                                    <strong>Students:</strong> ${winner.students.join(", ")}
+                                </div>
+                                <div class="mentor-info">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span><strong>Mentor:</strong> ${winner.mentor}</span>
+                                </div>
                                 <div class="winner-score">
                                     <i class="fas fa-chart-line"></i>
                                     <span>Score: ${winner.score}/100</span>
@@ -1288,20 +1512,6 @@
                         </div>
                     `).join('')}
                 </div>
-                
-                <div class="prize-info">
-                    <h4><i class="fas fa-award"></i> Awards</h4>
-                    <p>All winners receive certificates of achievement. Gold, Silver, and Bronze medalists receive special recognition and prizes.</p>
-                </div>
-                
-                ${panel.special_mention ? `
-                <div style="margin-top: 1rem; padding: 12px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid #3498db;">
-                    <h4 style="color: #2c3e50; margin-bottom: 5px; font-size: 0.95rem;">
-                        <i class="fas fa-star" style="color: #f39c12;"></i> Special Mention
-                    </h4>
-                    <p style="font-size: 0.9rem; color: #555;">${panel.special_mention}</p>
-                </div>
-                ` : ''}
             </div>
           `;
 
@@ -1319,16 +1529,16 @@
               <div class="stat-label">Total Projects Evaluated</div>
             </div>
             <div class="stat-card">
-              <div class="stat-value">${competitionResults.summary.winning_teams}</div>
-              <div class="stat-label">Winning Teams</div>
+              <div class="stat-value">${competitionResults.summary.winning_students}</div>
+              <div class="stat-label">Winning Students</div>
             </div>
             <div class="stat-card">
-              <div class="stat-value">${competitionResults.summary.average_score}</div>
-              <div class="stat-label">Average Score</div>
+              <div class="stat-value">${competitionResults.summary.total_participating_teams}</div>
+              <div class="stat-label">Total Students Participated</div>
             </div>
             <div class="stat-card">
               <div class="stat-value">${competitionResults.summary.participation_rate}</div>
-              <div class="stat-label">Participation Rate</div>
+              <div class="stat-label">Success Rate</div>
             </div>
           </div>
           
@@ -1337,21 +1547,21 @@
               <i class="fas fa-medal medal-icon"></i>
               <div>
                 <div class="medal-count">${competitionResults.competition_details.gold_medals}</div>
-                <div class="medal-label">Gold Medals</div>
+                <div class="medal-label">Gold</div>
               </div>
             </div>
             <div class="medal-stat silver-medal">
               <i class="fas fa-medal medal-icon"></i>
               <div>
                 <div class="medal-count">${competitionResults.competition_details.silver_medals}</div>
-                <div class="medal-label">Silver Medals</div>
+                <div class="medal-label">Silver</div>
               </div>
             </div>
             <div class="medal-stat bronze-medal">
               <i class="fas fa-medal medal-icon"></i>
               <div>
                 <div class="medal-count">${competitionResults.competition_details.bronze_medals}</div>
-                <div class="medal-label">Bronze Medals</div>
+                <div class="medal-label">Bronze</div>
               </div>
             </div>
           </div>
