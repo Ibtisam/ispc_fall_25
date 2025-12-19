@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inter-Subject Term Project Competition Results Fall 25</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #3498db;
+        --accent-color: #e74c3c;
+        --light-color: #ecf0f1;
+        --dark-color: #2c3e50;
+        --success-color: #27ae60;
+        --warning-color: #f39c12;
+        --gold: #ffd700;
+        --silver: #c0c0c0;
+        --bronze: #cd7f32;
+        /* Updated to match filter buttons */
+        --panel-ai: #9b59b6;
+        --panel-swe: #1abc9c;
+        --panel-prog: #3498db;
+        --panel-oop: #e67e22;
+        --panel-ds: #2ecc71;
+        --panel-sys: #34495e;
+        --panel-sec: #e74c3c;
+        --panel-auto: #f1c40f;
+      }
+
+      body {
+        background-color: #f8f9fa;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: white;
+        padding: 2rem 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo i {
+        color: var(--accent-color);
+      }
+
+      .header-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 1rem;
+      }
+
+      .info-card {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      /* Results Grid */
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+        gap: 25px;
+        margin-bottom: 3rem;
+      }
+
+      .panel-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .panel-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .panel-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .panel-header {
+        padding: 1.5rem;
+        color: white;
+        position: relative;
+      }
+
+      .panel-id {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+
+      .panel-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+        padding-right: 80px;
+      }
+
+      .panel-domain {
+        font-size: 0.9rem;
+        opacity: 0.95;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .results-stats {
+        display: flex;
+        gap: 15px;
+        font-size: 0.85rem;
+        opacity: 0.9;
+      }
+
+      /* Results Body */
+      .panel-body {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .results-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 1.5rem;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #eee;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .results-title i {
+        color: var(--secondary-color);
+      }
+
+      .winners-list {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .winner-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .winner-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .winner-rank {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .gold .winner-rank {
+        background: linear-gradient(135deg, var(--gold), #ffed4e);
+        color: #856404;
+        border: 2px solid #ffd700;
+      }
+
+      .silver .winner-rank {
+        background: linear-gradient(135deg, var(--silver), #e8e8e8);
+        color: #495057;
+        border: 2px solid #c0c0c0;
+      }
+
+      .bronze .winner-rank {
+        background: linear-gradient(135deg, var(--bronze), #e9b168);
+        color: #704214;
+        border: 2px solid #cd7f32;
+      }
+
+      .other .winner-rank {
+        background: linear-gradient(135deg, #6c757d, #a0a0a0);
+        color: white;
+        border: 2px solid #6c757d;
+      }
+
+      .winner-info {
+        flex-grow: 1;
+      }
+
+      .winner-name {
+        font-weight: 600;
+        color: var(--dark-color);
+        margin-bottom: 4px;
+        font-size: 1rem;
+      }
+
+      .winner-project {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 6px;
+        line-height: 1.4;
+      }
+
+      .winner-score {
+        font-size: 0.85rem;
+        color: var(--secondary-color);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .winner-score i {
+        font-size: 0.8rem;
+      }
+
+      /* Prize Info */
+      .prize-info {
+        margin-top: 1.5rem;
+        padding: 15px;
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(192, 192, 192, 0.1));
+        border-radius: 10px;
+        border-left: 4px solid var(--gold);
+      }
+
+      .prize-info h4 {
+        color: var(--dark-color);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .prize-info p {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      /* Domain-specific colors */
+      .panel-ai .panel-header {
+        background-color: var(--panel-ai);
+      }
+      .panel-swe .panel-header {
+        background-color: var(--panel-swe);
+      }
+      .panel-prog .panel-header {
+        background-color: var(--panel-prog);
+      }
+      .panel-oop .panel-header {
+        background-color: var(--panel-oop);
+      }
+      .panel-ds .panel-header {
+        background-color: var(--panel-ds);
+      }
+      .panel-sys .panel-header {
+        background-color: var(--panel-sys);
+      }
+      .panel-sec .panel-header {
+        background-color: var(--panel-sec);
+      }
+      .panel-auto .panel-header {
+        background-color: var(--panel-auto);
+      }
+
+      /* Summary Section */
+      .summary-section {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .summary-title {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--light-color);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 1.5rem;
+      }
+
+      .stat-card {
+        padding: 1.5rem;
+        border-radius: 10px;
+        background: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.3s ease;
+        border: 1px solid #e9ecef;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-value {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--secondary-color);
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        color: #666;
+        font-weight: 500;
+      }
+
+      /* Filter Controls */
+      .filter-section {
+        margin-bottom: 2rem;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .filter-title {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .filter-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 10px 22px;
+        border: none;
+        border-radius: 50px;
+        background: white;
+        color: var(--dark-color);
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        font-size: 0.9rem;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+      }
+
+      .filter-btn.active {
+        color: white;
+        border-color: white;
+      }
+
+      .filter-btn.all.active {
+        background-color: var(--primary-color);
+      }
+      .filter-btn.ai.active {
+        background-color: var(--panel-ai);
+      }
+      .filter-btn.swe.active {
+        background-color: var(--panel-swe);
+      }
+      .filter-btn.prog.active {
+        background-color: var(--panel-prog);
+      }
+      .filter-btn.oop.active {
+        background-color: var(--panel-oop);
+      }
+      .filter-btn.ds.active {
+        background-color: var(--panel-ds);
+      }
+      .filter-btn.sys.active {
+        background-color: var(--panel-sys);
+      }
+      .filter-btn.sec.active {
+        background-color: var(--panel-sec);
+      }
+      .filter-btn.auto.active {
+        background-color: var(--panel-auto);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark-color);
+        color: white;
+        padding: 2.5rem 0;
+        text-align: center;
+        margin-top: 3rem;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 25px;
+        margin-top: 1rem;
+      }
+
+      .footer-links a {
+        color: var(--light-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary-color);
+      }
+
+      .copyright {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 1rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .results-grid {
+          grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .results-grid {
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 20px;
+        }
+
+        .header-info {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 10px;
+          justify-content: center;
+        }
+
+        .info-card {
+          padding: 8px 15px;
+          font-size: 0.85rem;
+        }
+
+        .logo {
+          font-size: 2rem;
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+
+        .summary-section {
+          padding: 1.5rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .filter-controls {
+          justify-content: flex-start;
+          overflow-x: auto;
+          padding-bottom: 10px;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: thin;
+        }
+
+        .filter-controls::-webkit-scrollbar {
+          height: 6px;
+        }
+
+        .filter-controls::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 3px;
+        }
+
+        .filter-controls::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 3px;
+        }
+
+        .panel-name {
+          font-size: 1.2rem;
+          padding-right: 70px;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          gap: 15px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .results-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 0 15px;
+        }
+
+        .panel-header {
+          padding: 1rem 1.2rem;
+        }
+
+        .panel-body {
+          padding: 1.2rem;
+        }
+
+        .panel-id {
+          font-size: 0.7rem;
+          padding: 4px 10px;
+        }
+
+        .header-info {
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .info-card {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .filter-section {
+          padding: 1.2rem;
+        }
+
+        .filter-btn {
+          padding: 8px 18px;
+          font-size: 0.85rem;
+        }
+      }
+
+      /* Empty state */
+      .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #666;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .empty-state i {
+        font-size: 4rem;
+        color: #ddd;
+        margin-bottom: 1.5rem;
+      }
+
+      .empty-state h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--dark-color);
+      }
+
+      .empty-state p {
+        font-size: 1rem;
+        color: #888;
+      }
+
+      /* Animation for cards */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .panel-card {
+        animation: fadeInUp 0.5s ease forwards;
+      }
+
+      /* Organizer Footer Section */
+      .organizer-footer {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .organizer-footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--secondary-color),
+          var(--accent-color)
+        );
+      }
+
+      .organizer-content {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .organizer-logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 12px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .organizer-logo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        border-color: var(--secondary-color);
+      }
+
+      .logo-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .organizer-logo:hover .logo-image {
+        transform: scale(1.05);
+      }
+
+      .organizer-text {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .organizer-title {
+        font-size: 0.85rem;
+        opacity: 0.9;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+      }
+
+      .organizer-name {
+        font-size: 1.6rem;
+        font-weight: 800;
+        line-height: 1.3;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .organizer-contact {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .organizer-contact i {
+        color: var(--secondary-color);
+        margin-right: 8px;
+        width: 16px;
+        text-align: center;
+      }
+
+      .contact-separator {
+        opacity: 0.4;
+        font-weight: 300;
+      }
+
+      /* Medal Stats */
+      .medal-stats {
+        display: flex;
+        gap: 20px;
+        margin-top: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .medal-stat {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .medal-icon {
+        font-size: 1.5rem;
+      }
+
+      .gold-medal .medal-icon {
+        color: var(--gold);
+      }
+
+      .silver-medal .medal-icon {
+        color: var(--silver);
+      }
+
+      .bronze-medal .medal-icon {
+        color: var(--bronze);
+      }
+
+      .medal-count {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark-color);
+      }
+
+      .medal-label {
+        font-size: 0.9rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-trophy"></i>
+            <span>Inter-Subject Term Project Competition Results Fall 25</span>
+          </div>
+          <div class="header-info">
+            <div class="info-card">
+              <i class="fas fa-calendar-day"></i> Results Announced
+            </div>
+            <div class="info-card">
+              <i class="fas fa-medal"></i> 24 Winning Projects
+            </div>
+            <div class="info-card">
+              <i class="fas fa-user-friends"></i> 8 Competition Panels
+            </div>
+            <div class="info-card">
+              <i class="fas fa-award"></i> 8 Gold Medalists
+            </div>
+            <div class="info-card">
+              <i class="fas fa-star"></i> 8 Silver Medalists
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="filter-section">
+        <div class="filter-controls">
+          <button class="filter-btn all active" data-filter="all">
+            All Results
+          </button>
+          <button class="filter-btn ai" data-filter="ai">AI/ML</button>
+          <button class="filter-btn swe" data-filter="swe">Software Eng</button>
+          <button class="filter-btn prog" data-filter="prog">
+            Programming
+          </button>
+          <button class="filter-btn oop" data-filter="oop">Game/Mobile</button>
+          <button class="filter-btn ds" data-filter="ds">
+            Data Structures
+          </button>
+          <button class="filter-btn sys" data-filter="sec">Networks</button>
+          <button class="filter-btn sec" data-filter="sys">Database</button>
+          <button class="filter-btn auto" data-filter="auto">
+            Automata/HCI
+          </button>
+        </div>
+      </section>
+
+      <section class="results-grid" id="resultsContainer">
+        <!-- Results will be dynamically inserted here -->
+      </section>
+
+      <section class="summary-section" id="summarySection">
+        <!-- Summary will be dynamically inserted here -->
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <!-- Organizer Section -->
+        <div class="organizer-footer">
+          <div class="organizer-content">
+            <div class="organizer-logo">
+              <img
+                src="ilia_logo.png"
+                alt="Industrial Liaison, Internships & Alumni Affairs Office Logo"
+                class="logo-image"
+              />
+            </div>
+            <div class="organizer-text">
+              <div class="organizer-title">Competition Organized by</div>
+              <div class="organizer-name">
+                Industrial Liaison, Internships & Alumni Affairs Office
+              </div>
+              <div class="organizer-contact">
+                <i class="fas fa-envelope"></i> ibtisamgull@cuiatd.edu.pk
+                <span class="contact-separator">|</span>
+                <i class="fas fa-phone"></i> +92-323-4520282
+                <span class="contact-separator">|</span>
+                <i class="fas fa-map-marker-alt"></i> CUI Dhamtor Campus
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-content">
+          <p>
+            Computer Science Department • Intersubject Competition Results • Fall 2025
+          </p>
+
+          <p class="copyright">
+            © 2025 COMSATS University Islamabad. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Competition results data
+      const competitionResults = {
+        competition_details: {
+          day: "18 December, Thursday",
+          results_announced: "19 December 2025",
+          total_panels: 8,
+          total_winners: 24,
+          gold_medals: 8,
+          silver_medals: 8,
+          bronze_medals: 8,
+        },
+        panels: [
+          {
+            panel_id: "P_AI_ML",
+            panel_name: "Artificial Intelligence & Machine Learning",
+            domain: "AI/ML",
+            total_projects: 15,
+            judges: "Dr. Nuhman Ul Haq, Dr. Ahmad Saeed Khattak, Aisha, Zeenat Zulfiqar",
+            winners: [
+              {
+                rank: 1,
+                name: "Team NeuralNexus",
+                project: "Real-time Traffic Prediction using Deep Learning",
+                score: 94.5,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "AI Visionaries",
+                project: "Medical Image Analysis for Early Disease Detection",
+                score: 92.0,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "Data Wizards",
+                project: "Sentiment Analysis of Social Media Trends",
+                score: 89.5,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team QuantumAI for innovative approach to anomaly detection"
+          },
+          {
+            panel_id: "P_SWE",
+            panel_name: "Software Engineering & Web Development",
+            domain: "Software Engineering",
+            total_projects: 18,
+            judges: "Hifza Ali, Mukhtiar Zamin, Bushra Mushtaq, Sadaf Riaz, Fizza Semab Nazli",
+            winners: [
+              {
+                rank: 1,
+                name: "CodeCrafters",
+                project: "Agile Project Management Platform",
+                score: 95.0,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "DevSquad",
+                project: "E-commerce Platform with AI Recommendations",
+                score: 92.5,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "WebInnovators",
+                project: "Real-time Collaboration Tool for Developers",
+                score: 90.0,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team SecureCode for exceptional security implementation"
+          },
+          {
+            panel_id: "P_PROG",
+            panel_name: "Programming Fundamentals & Object Oriented Programming",
+            domain: "Programming",
+            total_projects: 20,
+            judges: "Dr. Abdul Nasir Khan, Dr. Mazhar Ali, Sumair Khan, Sana Malik, Fuzel Jamil",
+            winners: [
+              {
+                rank: 1,
+                name: "Algorithm Masters",
+                project: "Advanced Sorting Algorithm Visualizer",
+                score: 93.5,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "OOP Experts",
+                project: "Hospital Management System with Design Patterns",
+                score: 91.0,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "CodeArtisans",
+                project: "Interactive Programming Learning Platform",
+                score: 88.5,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team CleanCode for excellent code documentation"
+          },
+          {
+            panel_id: "P_GA_MO",
+            panel_name: "Game Development & Mobile Application",
+            domain: "Game/Mobile Development",
+            total_projects: 16,
+            judges: "Dr. Muhammad Ibtisam Gul, Ahsan Khan, Jawad Khan, Yasar Khan",
+            winners: [
+              {
+                rank: 1,
+                name: "GameChangers",
+                project: "AR-based Educational Game for Children",
+                score: 96.0,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "Mobile Mavericks",
+                project: "Fitness Tracking App with Social Features",
+                score: 93.5,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "App Architects",
+                project: "Language Learning Mobile Application",
+                score: 90.5,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team PixelPerfect for outstanding UI/UX design"
+          },
+          {
+            panel_id: "P_DS_ALGO",
+            panel_name: "Data Structures & Algorithms",
+            domain: "DS/Algorithms",
+            total_projects: 17,
+            judges: "Dr. Imran Ali Khan, Dr. Waqas Jadoon, Ehzaz Mustafa, Nauman Khan",
+            winners: [
+              {
+                rank: 1,
+                name: "Data Structure Pros",
+                project: "Optimized Graph Traversal Algorithms",
+                score: 94.0,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "Algorithm Innovators",
+                project: "Dynamic Programming Solution Optimizer",
+                score: 91.5,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "Efficiency Experts",
+                project: "Memory-Efficient Data Structure Library",
+                score: 89.0,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team TimeComplexity for best algorithm efficiency"
+          },
+          {
+            panel_id: "P_SEC_NET",
+            panel_name: "Security & Networks",
+            domain: "Security/Networking",
+            total_projects: 14,
+            judges: "Dr. Rab Nawaz, Dr. Javid Ali, Muhammad Ahmed Mustafa, Muhammad Ali Faisal",
+            winners: [
+              {
+                rank: 1,
+                name: "CyberGuardians",
+                project: "Network Intrusion Detection System",
+                score: 95.5,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "SecureNet",
+                project: "Encrypted Messaging Protocol",
+                score: 92.5,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "PacketMasters",
+                project: "Network Traffic Analyzer",
+                score: 90.0,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team Firewall for innovative security approach"
+          },
+          {
+            panel_id: "P_SYS_DB",
+            panel_name: "App Development & Databases",
+            domain: "Systems/Databases",
+            total_projects: 19,
+            judges: "Dr. Osman Khalid, Dr. Farman Ullah, Muhammad Ali Khan, Nighat Usman",
+            winners: [
+              {
+                rank: 1,
+                name: "Database Gurus",
+                project: "Distributed Database Management System",
+                score: 94.5,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "System Architects",
+                project: "Cloud-Based Inventory Management System",
+                score: 92.0,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "Data Engineers",
+                project: "Real-time Data Processing Pipeline",
+                score: 89.5,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team QueryOptimizer for best database performance"
+          },
+          {
+            panel_id: "P_AUTO_HCI",
+            panel_name: "Automata Theory & Others",
+            domain: "Automata/HCI",
+            total_projects: 15,
+            judges: "Dr. Ahmad Khan, Faryal Jhangir, Syed Shahab Zarin, Aatikah Rasool",
+            winners: [
+              {
+                rank: 1,
+                name: "Automata Experts",
+                project: "Finite Automata Simulator",
+                score: 93.0,
+                prize: "Gold Medal + Certificate"
+              },
+              {
+                rank: 2,
+                name: "HCI Innovators",
+                project: "Accessibility-Focused Interface Design",
+                score: 90.5,
+                prize: "Silver Medal + Certificate"
+              },
+              {
+                rank: 3,
+                name: "Theory Practitioners",
+                project: "Regular Expression Parser and Optimizer",
+                score: 88.0,
+                prize: "Bronze Medal + Certificate"
+              }
+            ],
+            special_mention: "Team UserCentric for exceptional usability testing"
+          }
+        ],
+        summary: {
+          total_participating_teams: 134,
+          total_projects_evaluated: 134,
+          winning_teams: 24,
+          participation_rate: "82%",
+          average_score: 88.7,
+        }
+      };
+
+      // DOM elements
+      const resultsContainer = document.getElementById("resultsContainer");
+      const summarySection = document.getElementById("summarySection");
+      const filterButtons = document.querySelectorAll(".filter-btn");
+
+      // Function to get domain class from panel domain
+      function getDomainClass(domain) {
+        const domainMap = {
+          "AI/ML": "ai",
+          "Software Engineering": "swe",
+          "Programming": "prog",
+          "Game/Mobile Development": "oop",
+          "DS/Algorithms": "ds",
+          "Security/Networking": "sec",
+          "Systems/Databases": "sys",
+          "Automata/HCI": "auto",
+        };
+
+        return domainMap[domain] || "all";
+      }
+
+      // Function to get rank class
+      function getRankClass(rank) {
+        if (rank === 1) return "gold";
+        if (rank === 2) return "silver";
+        if (rank === 3) return "bronze";
+        return "other";
+      }
+
+      // Function to render results
+      function renderResults(filter = "all") {
+        resultsContainer.innerHTML = "";
+
+        const filteredPanels = competitionResults.panels.filter((panel) => {
+          if (filter === "all") return true;
+          const domainClass = getDomainClass(panel.domain);
+          return domainClass === filter;
+        });
+
+        if (filteredPanels.length === 0) {
+          resultsContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>No results found for this filter</h3>
+                        <p>Try selecting a different domain filter</p>
+                    </div>
+                `;
+          return;
+        }
+
+        filteredPanels.forEach((panel) => {
+          const domainClass = getDomainClass(panel.domain);
+
+          const panelElement = document.createElement("div");
+          panelElement.className = `panel-card panel-${domainClass}`;
+          
+          panelElement.innerHTML = `
+            <div class="panel-header">
+                <div class="panel-id">${panel.panel_id}</div>
+                <h3 class="panel-name">${panel.panel_name}</h3>
+                <div class="panel-domain">${panel.domain}</div>
+                <div class="results-stats">
+                    <span><i class="fas fa-project-diagram"></i> ${panel.total_projects} Projects</span>
+                    <span><i class="fas fa-user-tie"></i> ${panel.judges.split(',').length} Judges</span>
+                </div>
+            </div>
+            <div class="panel-body">
+                <h3 class="results-title"><i class="fas fa-trophy"></i> Winners</h3>
+                <div class="winners-list">
+                    ${panel.winners.map(winner => `
+                        <div class="winner-item ${getRankClass(winner.rank)}">
+                            <div class="winner-rank">${winner.rank}</div>
+                            <div class="winner-info">
+                                <div class="winner-name">${winner.name}</div>
+                                <div class="winner-project">${winner.project}</div>
+                                <div class="winner-score">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Score: ${winner.score}/100</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="prize-info">
+                    <h4><i class="fas fa-award"></i> Awards</h4>
+                    <p>All winners receive certificates of achievement. Gold, Silver, and Bronze medalists receive special recognition and prizes.</p>
+                </div>
+                
+                ${panel.special_mention ? `
+                <div style="margin-top: 1rem; padding: 12px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <h4 style="color: #2c3e50; margin-bottom: 5px; font-size: 0.95rem;">
+                        <i class="fas fa-star" style="color: #f39c12;"></i> Special Mention
+                    </h4>
+                    <p style="font-size: 0.9rem; color: #555;">${panel.special_mention}</p>
+                </div>
+                ` : ''}
+            </div>
+          `;
+
+          resultsContainer.appendChild(panelElement);
+        });
+      }
+
+      // Function to render summary
+      function renderSummary() {
+        summarySection.innerHTML = `
+          <h2 class="summary-title">Competition Results Summary</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">${competitionResults.summary.total_projects_evaluated}</div>
+              <div class="stat-label">Total Projects Evaluated</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${competitionResults.summary.winning_teams}</div>
+              <div class="stat-label">Winning Teams</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${competitionResults.summary.average_score}</div>
+              <div class="stat-label">Average Score</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">${competitionResults.summary.participation_rate}</div>
+              <div class="stat-label">Participation Rate</div>
+            </div>
+          </div>
+          
+          <div class="medal-stats">
+            <div class="medal-stat gold-medal">
+              <i class="fas fa-medal medal-icon"></i>
+              <div>
+                <div class="medal-count">${competitionResults.competition_details.gold_medals}</div>
+                <div class="medal-label">Gold Medals</div>
+              </div>
+            </div>
+            <div class="medal-stat silver-medal">
+              <i class="fas fa-medal medal-icon"></i>
+              <div>
+                <div class="medal-count">${competitionResults.competition_details.silver_medals}</div>
+                <div class="medal-label">Silver Medals</div>
+              </div>
+            </div>
+            <div class="medal-stat bronze-medal">
+              <i class="fas fa-medal medal-icon"></i>
+              <div>
+                <div class="medal-count">${competitionResults.competition_details.bronze_medals}</div>
+                <div class="medal-label">Bronze Medals</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Initialize filter buttons
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          // Add active class to clicked button
+          button.classList.add("active");
+
+          // Filter panels
+          const filter = button.getAttribute("data-filter");
+          renderResults(filter);
+        });
+      });
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", () => {
+        renderResults();
+        renderSummary();
+      });
+
+      // Add animation for result cards
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          const cards = document.querySelectorAll(".panel-card");
+          cards.forEach((card, index) => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+
+            setTimeout(() => {
+              card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, index * 100);
+          });
+        }, 300);
+      });
+    </script>
+  </body>
+</html>
